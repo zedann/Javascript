@@ -1,0 +1,38 @@
+[
+    {
+     "id":1,
+     "author":"mark",
+     "department":"it",
+     "title":"How To Secure Your Php Website",
+     "content": "bla bla bla"
+    },
+    {
+    "id":2,
+    "author":"zedan",
+    "department":"se",
+    "title":"How To get Problem Solving Skills",
+    "content": "bla bla bla"
+    },
+    {
+    "id":3,
+    "author":"ahmed",
+    "department":"ce",
+    "title":"How To Secure Your Php Website",
+    "content": "bla bla bla"
+    },
+    {
+    "id":4,
+    "author":"mohamed",
+    "department":"bio",
+    "title":"How To Secure Your Php Website",
+    "content": "bla bla bla"
+    },
+    {
+    "id":5,
+    "author":"mark",
+    "department":"cs",
+    "title":"How To Secure Your Php Website",
+    "content": "bla bla bla"
+    }
+    
+]
