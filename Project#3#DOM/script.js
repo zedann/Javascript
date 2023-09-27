@@ -29,7 +29,7 @@ function activePlayer(active) {
     playerTwoSection.classList.add('player--active');
   }
 }
-//
+//-------
 let dicValue = 0,
   currentScore1 = 0,
   currentScore2 = 0;
