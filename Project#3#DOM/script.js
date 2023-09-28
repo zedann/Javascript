@@ -30,15 +30,15 @@ function activePlayer(active) {
   }
 }
 //-------
-let dicValue = 0,
+let diceVal = 0,
   currentScore1 = 0,
   currentScore2 = 0;
 //roll
 rollBtn.addEventListener('click', function () {
   if (gameOver) return;
-  dicValue = randomNum(1, 6);
-  dice.src = `dice-${dicValue}.png`;
-  if (dicValue == 1) {
+  diceVal = randomNum(1, 6);
+  dice.src = `dice-${diceVal}.png`;
+  if (diceVal == 1) {
     (currentScore1 = 0), (currentScore2 = 0);
     currentP1.textContent = currentScore1;
     currentP2.textContent = currentScore2;
@@ -51,10 +51,10 @@ rollBtn.addEventListener('click', function () {
     return;
   }
   if (!turn) {
-    currentScore1 += dicValue;
+    currentScore1 += diceVal;
     currentP1.textContent = currentScore1;
   } else {
-    currentScore2 += dicValue;
+    currentScore2 += diceVal;
     currentP2.textContent = currentScore2;
   }
 });
