@@ -18,6 +18,17 @@ const scorePlayer1 = document.querySelector('#score--0');
 const scorePlayer2 = document.querySelector('#score--1');
 console.log(scorePlayer1);
 //functions
+function hiddeElement(elementClass) {
+  document.querySelector(`.${elementClass}`).classList.add('hidden');
+}
+function showElement(elementClass) {
+  document.querySelector(`.${elementClass}`).classList.remove('hidden');
+}
+function hasClassName(elementClass, className) {
+  return document
+    .querySelector(`.${elementClass}`)
+    .classList.contains(className);
+}
 function randomNum(l, r) {
   return Math.trunc(Math.random() * 6) + 1;
 }
@@ -37,6 +48,9 @@ let diceVal = 0,
 
 //roll
 rollBtn.addEventListener('click', function () {
+  if (hasClassName('dice', 'hidden')) {
+    showElement('dice');
+  }
   if (gameOver) return;
   diceVal = randomNum(1, 6);
   dice.src = `dice-${diceVal}.png`;
@@ -86,6 +100,9 @@ holdBtn.addEventListener('click', function () {
 });
 
 newGame.addEventListener('click', function () {
+  if (!hasClassName('dice', 'hidden')) {
+    hiddeElement('dice');
+  }
   gameOver = false;
   turn = 0;
   activePlayer(1);
