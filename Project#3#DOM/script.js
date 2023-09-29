@@ -2,9 +2,10 @@
 let totalScorePlayer1 = 0,
   totalScorePlayer2 = 0,
   turn = 0,
-  winningValue = 10,
+  winningValue = 100,
   gameOver = false;
 //player1->0,player2->1
+//selecting elements
 const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 const newGame = document.querySelector('.btn--new');
@@ -33,6 +34,7 @@ function activePlayer(active) {
 let diceVal = 0,
   currentScore1 = 0,
   currentScore2 = 0;
+
 //roll
 rollBtn.addEventListener('click', function () {
   if (gameOver) return;
