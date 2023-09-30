@@ -2,10 +2,11 @@
 let totalScorePlayer1 = 0,
   totalScorePlayer2 = 0,
   turn = 0,
-  winningValue = 100,
+  winningValue = 20,
   gameOver = false;
 //player1->0,player2->1
 //selecting elements
+
 const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 const newGame = document.querySelector('.btn--new');
@@ -16,8 +17,9 @@ const playerOneSection = document.querySelector('.player--0');
 const playerTwoSection = document.querySelector('.player--1');
 const scorePlayer1 = document.querySelector('#score--0');
 const scorePlayer2 = document.querySelector('#score--1');
-console.log(scorePlayer1);
+
 //functions
+
 function hiddeElement(elementClass) {
   document.querySelector(`.${elementClass}`).classList.add('hidden');
 }
@@ -40,29 +42,41 @@ function activePlayer(active) {
     playerOneSection.classList.remove('player--active');
     playerTwoSection.classList.add('player--active');
   }
+  playerOneSection.classList.remove('player--winner');
+  playerTwoSection.classList.remove('player--winner');
 }
-//-------
+function winTheGame(player) {
+  if (!player) {
+    playerOneSection.classList.remove('player--active');
+    playerOneSection.classList.add('player--winner');
+  } else {
+    playerTwoSection.classList.remove('player--active');
+    playerTwoSection.classList.add('player--winner');
+  }
+}
+
+//end of functions
+
 let diceVal = 0,
   currentScore1 = 0,
   currentScore2 = 0;
 
+//start play
+hiddeElement('dice');
 //roll
 rollBtn.addEventListener('click', function () {
+  if (gameOver) return;
   if (hasClassName('dice', 'hidden')) {
     showElement('dice');
   }
-  if (gameOver) return;
   diceVal = randomNum(1, 6);
   dice.src = `dice-${diceVal}.png`;
-  if (diceVal == 1) {
+  if (diceVal === 1) {
     (currentScore1 = 0), (currentScore2 = 0);
     currentP1.textContent = currentScore1;
     currentP2.textContent = currentScore2;
-    if (!turn) {
-      activePlayer(2);
-    } else {
-      activePlayer(1);
-    }
+    if (!turn) activePlayer(2);
+    else activePlayer(1);
     turn ^= 1;
     return;
   }
@@ -74,6 +88,7 @@ rollBtn.addEventListener('click', function () {
     currentP2.textContent = currentScore2;
   }
 });
+
 //hold
 holdBtn.addEventListener('click', function () {
   if (gameOver) return;
@@ -88,14 +103,13 @@ holdBtn.addEventListener('click', function () {
   currentP1.textContent = currentScore1;
   currentP2.textContent = currentScore2;
   if (totalScorePlayer1 >= winningValue || totalScorePlayer2 >= winningValue) {
+    winTheGame(turn);
     gameOver = true;
+    if (!hasClassName('dice', 'hidden')) hiddeElement('dice');
     return;
   }
-  if (!turn) {
-    activePlayer(2);
-  } else {
-    activePlayer(1);
-  }
+  if (!turn) activePlayer(2);
+  else activePlayer(1);
   turn ^= 1;
 });
 
