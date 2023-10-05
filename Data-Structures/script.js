@@ -102,3 +102,83 @@ const restaurant = {
 //   ...restaurant.starterMenu,
 // ];
 // console.log(pizza, rissoto, otherfood);
+//nullish
+//nullish values is null and undefined
+// restaurant.newGuests = 0;
+// const guests = restaurant.newGuests ?? 10;
+// console.log(guests);
+
+// const game = {
+//   team1: "Bayern Munich",
+//   team2: "Borrussia Dortmund",
+//   players: [
+//     [
+//       "Neuer",
+//       "Pavard",
+//       "Martinez",
+//       "Alaba",
+//       "Davies",
+//       "Kimmich",
+//       "Goretzka",
+//       "Coman",
+//       "Muller",
+//       "Gnarby",
+//       "Lewandowski",
+//     ],
+//     [
+//       "Burki",
+//       "Schulz",
+//       "Hummels",
+//       "Akanji",
+//       "Hakimi",
+//       "Weigl",
+//       "Witsel",
+//       "Hazard",
+//       "Brandt",
+//       "Sancho",
+//       "Gotze",
+//     ],
+//   ],
+//   score: "4:0",
+//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+//   date: "Nov 9th, 2037",
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+//   printGoals: function (...players) {
+//     console.log(`goals scored number is ${players.length}`);
+//     for (let i = 0; i < players.length; i++) console.log(players[i]);
+//   },
+// };
+
+// const [players1, players2] = game.players;
+// const [gk, ...fieldPlayers] = players1;
+// const allPlayers = [...players1, ...players2];
+// const players1Final = [...players1, "thiago", "cotinho", "perisic"];
+// const { team1:team1, x:draw, team2:team2 } = game.odds;
+// console.log(team1, draw, team2);
+// game.printGoals("davis", "muler");
+// game.printGoals(...game.scored);
+
+// team1 < team2 && console.log("team1");
+// team2 < team1 && console.log("team2");
+
+//for of
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// console.log(menu);
+// for (const item of menu) console.log(item);
+
+//OPTIONAL CHAINING
+
+// console.log(restaurant.openingHours?.man?.open);
+// const days = ["sat", "sun", "mon", "tue", "wed", "thu", "fri"];
+// for (const day of days) {
+//   console.log(
+//     `${day} , we open at ${restaurant.openingHours?.[day]?.open ?? "closed"}`
+//   );
+// }
+// console.log(restaurant.orderRissato?.(0, 1) ?? "method dosnt exist");
+
