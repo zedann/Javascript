@@ -6,7 +6,20 @@ const flights =
   "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
 
 // Data needed for first part of the section
-
+const openingHours = {
+  thu: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 const restaurant = {
   name: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
@@ -14,25 +27,18 @@ const restaurant = {
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  openingHours,
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your pasta with ${ing1} , ${ing2} and ${ing3}`);
   },
 };
 
+// const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// for (const [key, { open, close }] of entries) {
+//   console.log(`on ${key} we open from ${open} to ${close}`);
+// }
 // const arr = [1, 2, 3];
 
 // const [a, b, c] = arr;
@@ -108,50 +114,75 @@ const restaurant = {
 // const guests = restaurant.newGuests ?? 10;
 // console.log(guests);
 
-// const game = {
-//   team1: "Bayern Munich",
-//   team2: "Borrussia Dortmund",
-//   players: [
-//     [
-//       "Neuer",
-//       "Pavard",
-//       "Martinez",
-//       "Alaba",
-//       "Davies",
-//       "Kimmich",
-//       "Goretzka",
-//       "Coman",
-//       "Muller",
-//       "Gnarby",
-//       "Lewandowski",
-//     ],
-//     [
-//       "Burki",
-//       "Schulz",
-//       "Hummels",
-//       "Akanji",
-//       "Hakimi",
-//       "Weigl",
-//       "Witsel",
-//       "Hazard",
-//       "Brandt",
-//       "Sancho",
-//       "Gotze",
-//     ],
-//   ],
-//   score: "4:0",
-//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-//   date: "Nov 9th, 2037",
-//   odds: {
-//     team1: 1.33,
-//     x: 3.25,
-//     team2: 6.5,
-//   },
-//   printGoals: function (...players) {
-//     console.log(`goals scored number is ${players.length}`);
-//     for (let i = 0; i < players.length; i++) console.log(players[i]);
-//   },
-// };
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+  printGoals: function (...players) {
+    console.log(`goals scored number is ${players.length}`);
+    for (let i = 0; i < players.length; i++) console.log(players[i]);
+  },
+};
+
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1} : ${player}`);
+}
+
+let sum = 0;
+for (const [key, value] of Object.entries(game.odds)) sum += value;
+console.log(sum / game.odds.length);
+
+for (const [key, value] of Object.entries(game.odds)) {
+  console.log(
+    `Odd of ${game[key] ? "victory" : "draw"} ${game[key] ?? ""}: ${value}`
+  );
+}
+const frq = new Map();
+for (const player of game.scored) frq.set(player, 0);
+
+for (const player of game.scored) frq.set(player, frq.get(player) + 1);
+
+console.log(frq);
+const scorers = {};
+for (const [key, value] of frq) {
+  scorers[key] = value;
+}
+console.log(scorers);
 
 // const [players1, players2] = game.players;
 // const [gk, ...fieldPlayers] = players1;
@@ -181,4 +212,3 @@ const restaurant = {
 //   );
 // }
 // console.log(restaurant.orderRissato?.(0, 1) ?? "method dosnt exist");
-
