@@ -333,17 +333,17 @@
 
 //challenge #4
 
-const textArea = document.querySelector("textarea");
-const btn = document.querySelector("button");
-btn.addEventListener("click", function () {
-  const values = textArea.value.split("\n");
-  for (let i = 0; i < values.length; i++) {
-    values[i] = values[i].trim();
-    let [firstPart, secondPart] = values[i].split("_");
-    firstPart = firstPart.toLowerCase();
-    secondPart = secondPart.toLowerCase();
-    secondPart = secondPart.replace(secondPart[0], secondPart[0].toUpperCase());
-    values[i] = firstPart + secondPart;
-    console.log(values[i].padEnd(17, " ") + "✅".repeat(i + 1));
-  }
-});
+// const textArea = document.querySelector("textarea");
+// const btn = document.querySelector("button");
+// btn.addEventListener("click", function () {
+//   const values = textArea.value.split("\n");
+//   for (let i = 0; i < values.length; i++) {
+//     let [firstPart, secondPart] = values[i].trim().split("_");
+//     firstPart = firstPart.toLowerCase();
+//     secondPart = secondPart.toLowerCase();
+//     secondPart = secondPart.replace(secondPart[0], secondPart[0].toUpperCase());
+//     values[i] = firstPart + secondPart;
+//     console.log(values[i].padEnd(17, " ") + "✅".repeat(i + 1));
+//   }
+// });
+
