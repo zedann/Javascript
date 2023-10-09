@@ -251,28 +251,99 @@
 // for (const key of hashMap.keys()) console.log(key);
 
 //challenge #3
-const gameEvents = new Map([
-  [17, "⚽️ GOAL"],
-  [36, "🔁 Substitution"],
-  [47, "⚽️ GOAL"],
-  [61, "🔁 Substitution"],
-  [64, "🔶 Yellow card"],
-  [69, "🔴 Red card"],
-  [70, "🔁 Substitution"],
-  [72, "🔁 Substitution"],
-  [76, "⚽️ GOAL"],
-  [80, "⚽️ GOAL"],
-  [92, "🔶 Yellow card"],
-]);
+// const gameEvents = new Map([
+//   [17, "⚽️ GOAL"],
+//   [36, "🔁 Substitution"],
+//   [47, "⚽️ GOAL"],
+//   [61, "🔁 Substitution"],
+//   [64, "🔶 Yellow card"],
+//   [69, "🔴 Red card"],
+//   [70, "🔁 Substitution"],
+//   [72, "🔁 Substitution"],
+//   [76, "⚽️ GOAL"],
+//   [80, "⚽️ GOAL"],
+//   [92, "🔶 Yellow card"],
+// ]);
 
-console.log(gameEvents.values());
-const events = [...new Set(gameEvents.values())];
-console.log(events);
-gameEvents.delete(64);
-let avg = 90,
-  last = 0;
-avg /= gameEvents.size;
-console.log(`An event happened,on average, every ${Math.trunc(avg)} minutes`);
-for (const [key, value] of gameEvents) {
-  console.log(`[${key <= 45 ? "FIRST" : "SECOND"} HALF]${key}:${value}`);
-}
+// console.log(gameEvents.values());
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+// gameEvents.delete(64);
+// let avg = 90,
+//   last = 0;
+// avg /= gameEvents.size;
+// console.log(`An event happened,on average, every ${Math.trunc(avg)} minutes`);
+// for (const [key, value] of gameEvents) {
+//   console.log(`[${key <= 45 ? "FIRST" : "SECOND"} HALF]${key}:${value}`);
+// }
+//STRINGS
+//slice(startidx , lstidx); -ve from end
+
+// const gotMiddleSeat = function (seat) {
+//   if (seat.slice(-1) === "B" || seat.slice(-1) === "E")
+//     console.log("You go middle Seat 😁");
+//   else console.log("You are Lucky 🥰");
+// };
+// gotMiddleSeat("11E");
+// gotMiddleSeat("11B");
+// gotMiddleSeat("11C");
+
+// const str = new String("hello");
+// console.log(str);
+
+// let str = "zeDan";
+// str = str.toLowerCase();
+// console.log(str);
+// str = str[0].toUpperCase() + str.slice(1);
+// console.log(str);
+
+//trim -> delete spaces from beggining and end
+
+//chaining becouse its return a string
+//replace and replace all
+// const announcement = "All Passengers come to boarding door 23 , boarding door 23";
+// console.log(announcement.replace("door","gate"));
+// console.log(announcement.replaceAll("door",'gate'));
+//bool methods
+//includes , startswith , endwith
+// const myName = "Zedan Mohamed";
+// const [firstName, lastName] = myName.split(" ");
+// console.log(firstName, lastName);
+// console.log(myName.split(" ").join('$'));
+
+//padding string
+//start , end
+// console.log("zedan".padStart(25, "+"));
+
+// const maskCreditCart = function (number) {
+//   const str = String(number);
+//   let lastFour = str.slice(-4);
+//   //console.log(lastFour);
+//   return lastFour.padStart(str.length, "*");
+// };
+// //console.log(maskCreditCart(123456123112267578));
+// //repeat
+// const message = "bad weather .. all departues delayed... ";
+// console.log(message.repeat(5));
+
+// const planesInline = function (n) {
+//   console.log(`There are ${n} planes in line ${"🛩️".repeat(n)}`);
+// };
+// planesInline(5);
+
+//challenge #4
+
+const textArea = document.querySelector("textarea");
+const btn = document.querySelector("button");
+btn.addEventListener("click", function () {
+  const values = textArea.value.split("\n");
+  for (let i = 0; i < values.length; i++) {
+    values[i] = values[i].trim();
+    let [firstPart, secondPart] = values[i].split("_");
+    firstPart = firstPart.toLowerCase();
+    secondPart = secondPart.toLowerCase();
+    secondPart = secondPart.replace(secondPart[0], secondPart[0].toUpperCase());
+    values[i] = firstPart + secondPart;
+    console.log(values[i].padEnd(17, " ") + "✅".repeat(i + 1));
+  }
+});
