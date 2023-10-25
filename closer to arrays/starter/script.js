@@ -136,9 +136,12 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //--------------------------------------------------------
 
 //display movments
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+  const tempMovments = sort
+    ? movements.slice().sort((a, b) => a - b)
+    : movements;
+  tempMovments.forEach(function (mov, i) {
     const type = mov < 0 ? 'withdrawal' : 'deposit';
     const html = `
     <div class="movements__row">
@@ -286,6 +289,12 @@ btnLoan.addEventListener('click', function (e) {
   }
   emptyInput(inputLoanAmount);
 });
+let sort = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  sort ^= true;
+  displayMovements(logedAcc.movements, sort);
+});
 //--------------------------------------------------------
 
 //max mov
@@ -309,3 +318,91 @@ btnLoan.addEventListener('click', function (e) {
 //   })
 //   .reduce((acc, cur) => acc + cur, 0);
 // console.log(totalDepositUSD);
+
+//flat & flatmap just [[1,2],3,4] => 1,2,3,4
+//sorting
+//sorting alphabiticaly
+//we need compare callback fn
+
+// console.log(movements);
+//return < 0 then a before b other b before a
+//ex 200 450 -> 200 - 450 < 0 so 200 450
+//ex 450 200 -> 450 - 200 > 0 so 200 450 -> thats what we need
+// ASC
+// console.log(movements.sort((a, b) => {
+//   if(a > b)
+//     return 1;
+//   else
+//     return -1;
+//  simp : a - b
+// }));
+// DESC
+// console.log(movements.sort((a, b) => {
+//   if(a > b)
+//     return -1;
+//   else return 1;
+// simp: b - a
+// }));
+
+//create & fill arrays
+// const arr = new Array(7);
+// for (let i = 0; i < arr.length; i++) arr[i] = 5;
+// console.log(arr);
+
+// Array.from({length:7})
+
+//code challenge
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+const ownersEatTooMuch = [],
+  ownersEatTooLittle = [];
+dogs.forEach(function (dog) {
+  const recommendedPortion = Math.trunc(dog.weight ** 0.75 * 28);
+  dog.recommendedPortion = recommendedPortion;
+  if (dog.owners.includes('Sarah')) {
+    console.log(
+      `Sarah's dog eating too ${
+        dog.curFood > recommendedPortion ? 'much' : 'little'
+      }`
+    );
+  }
+  if (dog.curFood > recommendedPortion) ownersEatTooMuch.push(dog.owners);
+  else ownersEatTooLittle.push(dog.owners);
+});
+const eatTooLittleStr = ownersEatTooLittle
+  .flat()
+  .splice(' ')
+  .join(' and ')
+  .concat(`'s dogs eat too much`);
+const eatTooMuchStr = ownersEatTooMuch
+  .flat()
+  .splice(' ')
+  .join(' and ')
+  .concat(`'s dogs eat too little`);
+console.log(eatTooMuchStr);
+console.log(eatTooLittleStr);
+console.log(dogs);
+console.log(dogs.some((dog) => dog.curFood == dog.recommendedPortion));
+console.log(
+  dogs.some(
+    (dog) =>
+      dog.curFood <= dog.recommendedPortion + dog.recommendedPortion * 0.1 &&
+      dog.curFood >= dog.recommendedPortion - dog.recommendedPortion * 0.1
+  )
+);
+const okayDogs = dogs.filter(
+  (dog) =>
+    dog.curFood <= dog.recommendedPortion + dog.recommendedPortion * 0.1 &&
+    dog.curFood >= dog.recommendedPortion - dog.recommendedPortion * 0.1
+);
+console.log(okayDogs);
+const dogsCopy = dogs.slice();
+console.log(dogsCopy);
+dogsCopy.sort((a, b) => {
+  return a.recommendedPortion - b.recommendedPortion;
+});
+console.log(dogsCopy);
