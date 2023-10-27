@@ -251,3 +251,24 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+//Numeric serprators
+// const dia = 287_460_000_000;
+// console.log(dia);
+// console.log(Number('230_000'));
+
+//Dates
+// const now = new Date();
+// const future = new Date(2037, 10, 19, 15, 23);
+// console.log(future.getFullYear());
+
+// setTimeout(() => {
+//   console.log('set time out');
+// }, 0);
+// console.log('hello');
+// console.log('yao baby ');
+
+setInterval(() => {
+  const now = new Date();
+  console.log(now.getHours(), now.getMinutes(), now.getSeconds());
+}, 1000);
