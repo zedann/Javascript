@@ -18,8 +18,9 @@ const closeModal = function () {
   overlay.classList.add('hidden');
 };
 
-for (let i = 0; i < btnsOpenModal.length; i++)
-  btnsOpenModal[i].addEventListener('click', openModal);
+btnsOpenModal.forEach(btnOpenModal =>
+  btnOpenModal.addEventListener('click', openModal)
+);
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -30,4 +31,27 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-//Selecting elements
+//learn more scrolling
+const btnLearnMore = document.querySelector('.btn--scroll-to');
+btnLearnMore.addEventListener('click', function (e) {
+  const section1 = document.getElementById('section--1');
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// nav links smooth
+// document.querySelectorAll('.nav__link').forEach(function (ele) {
+//   ele.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const sectionId = ele.getAttribute('href');
+//     document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// more efficent bubbling
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
