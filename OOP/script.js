@@ -110,3 +110,84 @@
 // bmw.accelerate();
 // bmw.accelerate();
 // bmw.brake();
+
+// const sayHello = function () {
+//   return 'hello';
+// };
+
+//Inheritance
+//function constructor
+
+// const Person = function (firstName, birthYear) {
+//   this.firstName = firstName;
+//   this.birthYear = birthYear;
+// };
+// Person.prototype.calcAge = function () {
+//   console.log(new Date().getFullYear() - this.birthYear);
+// };
+
+// Person.prototype.alive = function () {
+//   console.log('alive...');
+// };
+
+// const Student = function (firstName, birthYear, course) {
+//   Person.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+
+// Student.prototype = Object.create(Person.prototype);
+// Student.prototype.constructor = Student;
+// Student.prototype.sayFullName = function () {
+//   console.log(`${this.firstName} Tribiany`);
+// };
+
+// console.log(Person.prototype);
+// const zedan = new Student('zedan', 2002, 'math');
+// zedan.calcAge();
+// zedan.sayFullName();
+
+//challenge
+
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(this.speed);
+};
+
+Car.prototype.break = function () {
+  this.speed = Math.abs(this.speed - 5);
+  console.log(this.speed);
+};
+
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+
+EV.prototype = Object.create(Car.prototype);
+EV.prototype.constructor = EV;
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+  console.log(this.charge * 100 + '%');
+};
+EV.prototype.accelerate = function () {
+  //overriding
+  this.speed += 20;
+  this.charge -= 0.01;
+  console.log(
+    `${this.make} going at ${this.speed} km/h , with a charge of ${
+      this.charge * 100
+    }%`
+  );
+};
+// console.log(EV.prototype.accelerate);
+
+const tesla = new EV('Tesla', 120, 0.23);
+console.log(tesla);
+tesla.accelerate();
+tesla.break();
+tesla.chargeBattery(0.9);
